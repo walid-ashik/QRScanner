@@ -1,0 +1,57 @@
+package com.calculator;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText m1stDigit;
+    private EditText m2ndDigit;
+    private TextView mResult;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        m1stDigit = findViewById(R.id.edit_text1);
+        m2ndDigit = findViewById(R.id.edit_text2);
+        mResult = findViewById(R.id.textViewResult);
+
+    }
+
+    public void buttonClicked(View view){
+
+        int firstValue = Integer.parseInt(m1stDigit.getText().toString());
+        int secondValue = Integer.parseInt(m2ndDigit.getText().toString());
+        int result;
+
+        switch (view.getId()){
+
+            case R.id.button_addition:
+                //add
+                result = firstValue + secondValue;
+                mResult.setText(String.valueOf(result));
+                break;
+
+            case R.id.button_subtraction:
+                //subtract
+                result = firstValue - secondValue;
+                mResult.setText(String.valueOf(result));
+                break;
+
+            case R.id.button_multiplication:
+                //multiply
+                result = firstValue * secondValue;
+                mResult.setText(String.valueOf(result));
+                break;
+
+            case R.id.button_division:
+                //divide
+                float floatResult = firstValue / secondValue;
+                mResult.setText(String.valueOf(floatResult));
+                break;
+
+                default:
+                    break;
+        }
+
+    }
+}
