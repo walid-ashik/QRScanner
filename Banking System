@@ -1,0 +1,65 @@
+package com.banksystem;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText mEditText;
+    private Button mDeposit;
+    private Button mWithdraw;
+    private Button mCurrentBalance;
+
+    private int balance = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mEditText = findViewById(R.id.edit_text);
+        mDeposit = findViewById(R.id.deposit_button);
+        mWithdraw = findViewById(R.id.withdraw_button);
+        mCurrentBalance = findViewById(R.id.current_balance_button);
+
+        mDeposit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(mEditText.getText().equals("")){
+                    return;
+                }else {
+
+                    balance = Integer.parseInt(mEditText.getText().toString());
+                }
+
+            }
+        });
+
+        mWithdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(balance < Integer.parseInt(mEditText.getText().toString())){
+                    return;
+                }else {
+                    balance = balance - Integer.parseInt(mEditText.getText().toString());
+                }
+
+            }
+        });
+
+        mCurrentBalance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, String.valueOf(balance), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+}
